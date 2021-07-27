@@ -1,7 +1,15 @@
+/* eslint-disable prettier/prettier */
 /* eslint-disable camelcase */
 type SpotifyPlayerMethod<T = void> = () => Promise<T>;
 
 export type SpotifyPlayerCallback = (token: string) => void;
+
+export interface SpotifySongSection {
+  comment: string;
+  end_time: number;
+  section: string;
+  start_time: number;
+}
 
 export interface SpotifyDevice {
   id: string;

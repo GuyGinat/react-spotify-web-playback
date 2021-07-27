@@ -1,7 +1,8 @@
+/* eslint-disable prettier/prettier */
 /* eslint-disable camelcase */
 import * as React from 'react';
 
-import { SpotifyDevice, SpotifyPlayerTrack, WebPlaybackTrack } from './spotify';
+import { SpotifyDevice, SpotifyPlayerTrack, WebPlaybackTrack, SpotifySongSection } from './spotify';
 
 export type PlainObject<T = any> = Record<string, T>;
 
@@ -19,6 +20,7 @@ export interface Props {
   persistDeviceSelection?: boolean;
   play?: boolean;
   showSaveIcon?: boolean;
+  songSections: SpotifySongSection[];
   styles?: StylesProps;
   syncExternalDevice?: boolean;
   syncExternalDeviceInterval?: number;
@@ -29,10 +31,12 @@ export interface Props {
 
 export interface State {
   currentDeviceId: string;
+  currentSongSection: number;
   deviceId: string;
   devices: SpotifyDevice[];
   error: string;
   errorType: string;
+  finishedSectionTransition: boolean;
   isActive: boolean;
   isInitializing: boolean;
   isMagnified: boolean;
@@ -41,6 +45,7 @@ export interface State {
   isUnsupported: boolean;
   needsUpdate: boolean;
   nextTracks: WebPlaybackTrack[];
+  playSectionsOnly: boolean,
   playerPosition: 'bottom' | 'top';
   position: number;
   previousTracks: WebPlaybackTrack[];

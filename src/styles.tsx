@@ -1,3 +1,4 @@
+/* eslint-disable prettier/prettier */
 /* tslint:disable:object-literal-sort-keys */
 import * as React from 'react';
 import { create, NanoRenderer } from 'nano-css';
@@ -16,9 +17,7 @@ import { CssLikeObject } from 'nano-css/types/common';
 import { StyledProps, StylesOptions, StylesProps } from './types/common';
 
 interface NanoExtended extends NanoRenderer {
-  styled: (
-    tag: string,
-  ) => (
+  styled: (tag: string,) => (
     styles: CssLikeObject,
     dynamicTemplate?: (props: StyledProps) => CssLikeObject,
     block?: string,

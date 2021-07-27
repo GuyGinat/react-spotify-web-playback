@@ -1,14 +1,17 @@
+/* eslint-disable prettier/prettier */
 import * as React from 'react';
 import RangeSlider, { RangeSliderPosition } from '@gilbarbara/react-range-slider';
 
 import { px, styled } from '../styles';
 import { StyledProps, StylesOptions } from '../types/common';
+import { SpotifySongSection } from '../types/spotify';
 
 interface Props {
   isMagnified: boolean;
   onChangeRange: (position: number) => void;
   onToggleMagnify: () => void;
   position: number;
+  sections: SpotifySongSection[];
   styles: StylesOptions;
 }
 
