@@ -13,6 +13,7 @@ export interface CallbackState extends State {
 export interface Props {
   autoPlay?: boolean;
   callback?: (state: CallbackState) => any;
+  onTrackChanged?: (track: SpotifyPlayerTrack) => void;
   initialVolume?: number;
   magnifySliderOnHover?: boolean;
   name?: string;

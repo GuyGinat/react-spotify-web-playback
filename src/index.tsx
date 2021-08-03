@@ -173,6 +173,7 @@ class SpotifyWebPlayer extends React.PureComponent<Props, State> {
     const {
       autoPlay,
       callback,
+      onTrackChanged,
       offset,
       play: playProp,
       showSaveIcon,
@@ -240,6 +241,7 @@ class SpotifyWebPlayer extends React.PureComponent<Props, State> {
         ...this.state,
         type: TYPE.TRACK,
       });
+      if (onTrackChanged) onTrackChanged(track)
 
       if (showSaveIcon) {
         this.updateState({ isSaved: false });
