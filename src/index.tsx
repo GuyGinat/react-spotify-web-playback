@@ -36,7 +36,7 @@ import {
   WebPlaybackImage,
   WebPlaybackPlayer,
   WebPlaybackReady,
-  WebPlaybackState,  
+  WebPlaybackState,
 } from './types';
 import {
   getSpotifyURIType,
@@ -168,8 +168,18 @@ class SpotifyWebPlayer extends React.PureComponent<Props, State> {
   }
 
   public async componentDidUpdate(previousProps: Props, previousState: State) {
-    const { currentDeviceId, currentSongSection, deviceId, error, isInitializing, isPlaying, status, track, playSectionsOnly, progressMs,  } =
-      this.state;
+    const {
+      currentDeviceId,
+      currentSongSection,
+      deviceId,
+      error,
+      isInitializing,
+      isPlaying,
+      status,
+      track,
+      playSectionsOnly,
+      progressMs,
+    } = this.state;
     const {
       autoPlay,
       callback,
@@ -216,14 +226,17 @@ class SpotifyWebPlayer extends React.PureComponent<Props, State> {
     }
 
     if (playSectionsOnly && songSections?.length > 0) {
-      if ((progressMs > songSections[currentSongSection].end_time)) {        
-        const nextSection = (currentSongSection + 1) % songSections.length
-        console.log(progressMs)
-        this.player?.seek(songSections[nextSection].start_time)
-        this.updateState({currentSongSection: nextSection, progressMs: songSections[nextSection].start_time})
+      if (progressMs > songSections[currentSongSection].end_time) {
+        const nextSection = (currentSongSection + 1) % songSections.length;
+        console.log(progressMs);
+        this.player?.seek(songSections[nextSection].start_time);
+        this.updateState({
+          currentSongSection: nextSection,
+          progressMs: songSections[nextSection].start_time,
+        });
       }
     }
-    
+
     if (previousState.currentDeviceId !== currentDeviceId && currentDeviceId) {
       if (!isReady) {
         callback!({
@@ -241,7 +254,7 @@ class SpotifyWebPlayer extends React.PureComponent<Props, State> {
         ...this.state,
         type: TYPE.TRACK,
       });
-      if (onTrackChanged) onTrackChanged(track)
+      if (onTrackChanged) onTrackChanged(track);
 
       if (showSaveIcon) {
         this.updateState({ isSaved: false });
@@ -578,9 +591,8 @@ class SpotifyWebPlayer extends React.PureComponent<Props, State> {
   };
 
   private handleToggleStopOnSections = () => {
-    
     this.updateState((previousState: State) => {
-      console.log(previousState)
+      console.log(previousState);
       return { playSectionsOnly: !previousState.playSectionsOnly };
     });
   };
@@ -966,7 +978,12 @@ class SpotifyWebPlayer extends React.PureComponent<Props, State> {
     return (
       <Player ref={this.ref} styles={this.styles}>
         {/* <div onClick={() => this.player?.seek(15000)}>Click Here</div> */}
-        <button onClick={this.handleToggleStopOnSections} className={`${playSectionsOnly ? 'bg-red-400': 'bg-red-700'} hover:bg-red-500 px-2 py-1`}>Toggle</button>
+        <button
+          onClick={this.handleToggleStopOnSections}
+          className={`${playSectionsOnly ? 'bg-red-400' : 'bg-red-700'} hover:bg-red-500 px-2 py-1`}
+        >
+          Stop In Sections
+        </button>
         {isReady && (
           <Slider
             isMagnified={isMagnified}
